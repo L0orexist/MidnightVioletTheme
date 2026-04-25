@@ -1,0 +1,618 @@
+/**
+ * @name MidnightViolet
+ * @description System24 supercharged — inky dark with refined violet accents. Designed for long sessions.
+ * @author Lorenzo (base: refact0r/system24)
+ * @version 3.1.0
+ * @invite nz87hXyvcy
+ * @website https://github.com/refact0r/system24
+ * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
+ * @authorId 508863359777505290
+ * @authorLink https://www.refact0r.dev
+*/
+
+/* ================================================================
+   IMPORTAZIONI — System24 Base + Font Custom
+   ================================================================ */
+@import url('https://refact0r.github.io/system24/build/system24.css');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ================================================================
+   CONFIGURAZIONE SYSTEM24 — body
+   ================================================================ */
+body {
+    /* ---- Font ---- */
+    --font: 'JetBrains Mono';
+    --code-font: 'JetBrains Mono';
+    font-weight: 300;
+    letter-spacing: -0.03ch;
+
+    /* ---- Dimensioni ---- */
+    --gap: 10px;
+    --divider-thickness: 3px;
+    --border-thickness: 1px;
+    --border-hover-transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ---- Animazioni ---- */
+    --animations: on;
+    --list-item-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --dms-icon-svg-transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* ---- Top Bar ---- */
+    --top-bar-height: var(--gap);
+    --top-bar-button-position: titlebar;
+    --top-bar-title-position: left;
+    --subtle-top-bar-title: on;
+
+    /* ---- Window Controls ---- */
+    --custom-window-controls: on;
+    --window-control-size: 12px;
+
+    /* ---- DMs Icon ---- */
+    --custom-dms-icon: off;
+    --dms-icon-svg-url: url('');
+    --dms-icon-svg-size: 90%;
+    --dms-icon-color-before: var(--text-4);
+    --dms-icon-color-after: var(--accent-1);
+    --custom-dms-background: color;
+    --dms-background-image-url: url('');
+    --dms-background-image-size: cover;
+    --dms-background-color: linear-gradient(135deg, oklch(18% 0.04 290), oklch(14% 0.05 310), oklch(12% 0.03 330));
+
+    /* ---- Background Image ---- */
+    --background-image: off;
+    --background-image-url: url('');
+
+    /* ---- Trasparenza / Blur ---- */
+    --transparency-tweaks: off;
+    --remove-bg-layer: off;
+    --panel-blur: off;
+    --blur-amount: 16px;
+    --bg-floating: var(--bg-3);
+
+    /* ---- Opzioni Varie ---- */
+    --small-user-panel: on;
+    --unrounding: on;
+
+    /* ---- Stile ---- */
+    --custom-spotify-bar: on;
+    --ascii-titles: on;
+    --ascii-loader: system24;
+
+    /* ---- Label Pannelli ---- */
+    --panel-labels: on;
+    --label-color: var(--text-4);
+    --label-font-weight: 600;
+}
+
+/* ================================================================
+   PALETTE COLORI — :root
+   Inky dark con accenti viola raffinati — grandi superfici neutre, colore solo sui dettagli
+   ================================================================ */
+:root {
+    --colors: on;
+
+    /* =============== TESTO =============== */
+    /* Quasi neutro — appena un respiro di viola, non deve colorare la lettura */
+    --text-0: var(--bg-4);                      /* testo su elementi colorati */
+    --text-1: oklch(92% 0.005 290);             /* bianco quasi puro */
+    --text-2: oklch(80% 0.01 290);              /* heading — grigio chiaro appena caldo */
+    --text-3: oklch(68% 0.012 290);             /* testo normale — grigio neutro */
+    --text-4: oklch(48% 0.02 290);              /* icone e canali — grigio medio */
+    --text-5: oklch(32% 0.015 290);             /* muted — grigio scuro */
+
+    /* =============== SFONDI =============== */
+    /* Quasi neri — la tinta viola è sotto soglia percettiva, dà solo "calore" */
+    --bg-1: oklch(22% 0.015 290);               /* bottoni dark cliccati */
+    --bg-2: oklch(17% 0.012 290);               /* bottoni dark */
+    --bg-3: oklch(13% 0.01 290);                /* spacing, elementi secondari */
+    --bg-4: oklch(9% 0.008 290);                /* sfondo principale — quasi nero puro */
+    --hover: oklch(55% 0.02 290 / 0.07);        /* hover — appena visibile */
+    --active: oklch(55% 0.03 290 / 0.12);       /* attivo — leggero */
+    --active-2: oklch(55% 0.04 290 / 0.18);     /* stato extra */
+    --message-hover: oklch(100% 0.1 300 / 0.10); /* messaggio hover — visibile */
+
+    /* =============== ACCENTI =============== */
+    /* Qui il colore VIVE — piccole superfici, alto contrasto col nero */
+    --accent-1: oklch(72% 0.13 295);            /* link — viola chiaro ma non fluo */
+    --accent-2: oklch(63% 0.14 300);            /* elementi piccoli — viola medio */
+    --accent-3: oklch(52% 0.14 305);            /* bottoni accento */
+    --accent-4: oklch(46% 0.12 305);            /* bottoni hover */
+    --accent-5: oklch(40% 0.10 305);            /* bottoni cliccati */
+    --accent-new: oklch(62% 0.15 355);          /* rosso/rosa — smorzato */
+    --mention: linear-gradient(to right, oklch(63% 0.14 300 / 0.08) 40%, transparent);
+    --mention-hover: linear-gradient(to right, oklch(63% 0.14 300 / 0.04) 40%, transparent);
+    --reply: linear-gradient(to right, oklch(68% 0.01 290 / 0.06) 40%, transparent);
+    --reply-hover: linear-gradient(to right, oklch(68% 0.01 290 / 0.03) 40%, transparent);
+
+    /* =============== STATO =============== */
+    --online: oklch(65% 0.12 165);              /* verde — meno neon */
+    --dnd: oklch(60% 0.15 15);                  /* rosso — smorzato */
+    --idle: oklch(70% 0.11 80);                 /* ambra — meno saturo */
+    --streaming: oklch(58% 0.14 300);           /* viola — contenuto */
+    --offline: var(--text-5);                   /* grigio scuro */
+
+    /* =============== BORDI =============== */
+    --border-light: oklch(50% 0.01 290 / 0.06);
+    --border: oklch(50% 0.015 290 / 0.10);
+    --border-hover: var(--accent-2);
+    --button-border: oklch(70% 0.01 290 / 0.07);
+
+    /* =============== COLORI BASE =============== */
+    /* Rosso — bilanciato */
+    --red-1: oklch(72% 0.12 10);
+    --red-2: oklch(62% 0.14 10);
+    --red-3: oklch(55% 0.14 10);
+    --red-4: oklch(48% 0.12 10);
+    --red-5: oklch(42% 0.10 10);
+
+    /* Verde — naturale, non neon */
+    --green-1: oklch(72% 0.10 165);
+    --green-2: oklch(65% 0.12 165);
+    --green-3: oklch(58% 0.11 165);
+    --green-4: oklch(50% 0.10 165);
+    --green-5: oklch(44% 0.08 165);
+
+    /* Blu — freddo, contenuto */
+    --blue-1: oklch(72% 0.09 260);
+    --blue-2: oklch(64% 0.11 260);
+    --blue-3: oklch(56% 0.10 260);
+    --blue-4: oklch(48% 0.09 260);
+    --blue-5: oklch(42% 0.07 260);
+
+    /* Giallo — caldo ma non aggressivo */
+    --yellow-1: oklch(78% 0.10 85);
+    --yellow-2: oklch(72% 0.12 85);
+    --yellow-3: oklch(64% 0.11 85);
+    --yellow-4: oklch(56% 0.10 85);
+    --yellow-5: oklch(50% 0.08 85);
+
+    /* Viola — cuore del tema, saturazione media per non affaticare */
+    --purple-1: oklch(72% 0.13 295);
+    --purple-2: oklch(63% 0.14 300);
+    --purple-3: oklch(55% 0.13 305);
+    --purple-4: oklch(47% 0.11 305);
+    --purple-5: oklch(40% 0.09 305);
+}
+
+
+/* ================================================================
+   ╔══════════════════════════════════════════════════════════════╗
+   ║        CSS PERSONALIZZATO AGGIUNTIVO — OLTRE SYSTEM24       ║
+   ╚══════════════════════════════════════════════════════════════╝
+   ================================================================ */
+
+/* ================================================================
+   SCROLLBAR — stile neon sottile
+   ================================================================ */
+::-webkit-scrollbar {
+    width: 6px !important;
+    height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: oklch(45% 0.03 290 / 0.3) !important;
+    border-radius: 0 !important;
+    border: none !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: oklch(50% 0.05 300 / 0.45) !important;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent !important;
+}
+
+/* ================================================================
+   SELEZIONE TESTO — viola neon
+   ================================================================ */
+::selection {
+    background: oklch(55% 0.10 300 / 0.25) !important;
+    color: oklch(92% 0.005 290) !important;
+}
+
+::-moz-selection {
+    background: oklch(55% 0.10 300 / 0.25) !important;
+    color: oklch(92% 0.005 290) !important;
+}
+
+/* ================================================================
+   GLOW EFFECT — bordi che brillano al hover
+   ================================================================ */
+
+/* Server list glow al hover */
+nav[aria-label="Servers sidebar"] [data-list-item-id]:hover [class*="wrapper_"] {
+    filter: drop-shadow(0 0 4px oklch(63% 0.10 300 / 0.20)) !important;
+    transition: filter 0.3s ease !important;
+}
+
+/* Indicatore server attivo — glow viola */
+nav[aria-label="Servers sidebar"] [class*="pill"] span {
+    background-color: oklch(63% 0.14 300) !important;
+    box-shadow: 0 0 5px oklch(63% 0.14 300 / 0.25) !important;
+}
+
+/* ================================================================
+   INPUT AREA — glow focus
+   ================================================================ */
+[class*="channelTextArea_"] [class*="scrollableContainer_"]:focus-within {
+    box-shadow: 0 0 0 1px oklch(55% 0.08 300 / 0.20),
+                0 0 8px oklch(55% 0.08 300 / 0.04) !important;
+    transition: box-shadow 0.3s ease !important;
+}
+
+/* ================================================================
+   MENZIONI — brillano leggermente
+   ================================================================ */
+.mention,
+[class*="mention"] {
+    text-shadow: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.mention:hover,
+[class*="mention"]:hover {
+    text-shadow: 0 0 6px oklch(63% 0.10 300 / 0.20) !important;
+}
+
+/* ================================================================
+   REAZIONI — bordo colorato per le tue
+   ================================================================ */
+[class*="reaction_"][class*="reactionMe_"] {
+    border-color: oklch(55% 0.10 300 / 0.35) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   EMBED — linea sinistra con gradiente viola
+   ================================================================ */
+[class*="embed_"] {
+    border-left-color: oklch(50% 0.10 300) !important;
+}
+
+/* ================================================================
+   UNREAD DIVIDER — linea con glow
+   ================================================================ */
+[class*="unreadBar_"],
+[class*="newMessagesBar_"] {
+    box-shadow: 0 0 6px oklch(60% 0.12 355 / 0.15) !important;
+}
+
+/* ================================================================
+   NUOVO MESSAGGIO — animazione ingresso sottile
+   ================================================================ */
+@keyframes mv-msg-enter {
+    from {
+        opacity: 0.6;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[class*="message_"][class*="cozy_"] {
+    animation: mv-msg-enter 0.2s ease-out !important;
+}
+
+/* ================================================================
+   CODE BLOCKS — syntax highlighting viola/neon
+   ================================================================ */
+.hljs-keyword  { color: oklch(70% 0.12 340) !important; }  /* rosa smorzato */
+.hljs-string   { color: oklch(68% 0.10 165) !important; }  /* ciano-verde morbido */
+.hljs-number   { color: oklch(72% 0.10 85) !important; }   /* dorato contenuto */
+.hljs-comment  { color: oklch(38% 0.02 290) !important; font-style: italic !important; }
+.hljs-function { color: oklch(70% 0.11 295) !important; }  /* viola */
+.hljs-title    { color: oklch(72% 0.09 260) !important; }  /* indaco */
+.hljs-built_in { color: oklch(65% 0.10 165) !important; }  /* verde */
+.hljs-attr     { color: oklch(68% 0.10 340) !important; }  /* rosa */
+.hljs-params   { color: oklch(68% 0.012 290) !important; } /* testo normale */
+.hljs-literal  { color: oklch(72% 0.10 85) !important; }   /* dorato */
+.hljs-type     { color: oklch(68% 0.09 260) !important; }  /* blu */
+.hljs-meta     { color: oklch(55% 0.07 300) !important; }  /* viola medio */
+.hljs-regexp   { color: oklch(62% 0.12 355) !important; }  /* rosa */
+.hljs-symbol   { color: oklch(65% 0.10 165) !important; }  /* verde */
+.hljs-variable { color: oklch(70% 0.08 295) !important; }  /* lavanda */
+
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.85em !important;
+}
+
+/* ================================================================
+   TOOLTIP — sfondo scuro con bordo viola
+   ================================================================ */
+[class*="tooltip_"] {
+    border: 1px solid oklch(40% 0.02 290 / 0.2) !important;
+    box-shadow: 0 4px 16px oklch(5% 0.01 290 / 0.6) !important;
+}
+
+/* ================================================================
+   CONTEXT MENU — ombre più profonde
+   ================================================================ */
+[class*="menu_"] {
+    box-shadow: 0 8px 24px oklch(5% 0.01 290 / 0.55) !important;
+}
+
+/* ================================================================
+   USER POPOUT — bordo viola sottile al hover
+   ================================================================ */
+[class*="userPopoutOuter_"]:hover,
+[class*="userProfileOuter_"]:hover {
+    box-shadow: 0 0 0 1px oklch(50% 0.04 300 / 0.12),
+                0 8px 24px oklch(5% 0.01 290 / 0.5) !important;
+}
+
+/* ================================================================
+   MODAL — sfumatura viola profonda
+   ================================================================ */
+[class*="backdrop_"] {
+    background: oklch(5% 0.01 290 / 0.80) !important;
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* ================================================================
+   BADGE NOTIFICHE — glow sul badge
+   ================================================================ */
+[class*="numberBadge_"] {
+    box-shadow: 0 0 4px oklch(60% 0.14 15 / 0.25),
+                0 0 0 2px oklch(9% 0.008 290) !important;
+}
+
+/* ================================================================
+   BOT TAG — stile accent
+   ================================================================ */
+[class*="botTag_"] {
+    background: oklch(50% 0.12 305) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   SPEAKING INDICATOR — bordo verde glow
+   ================================================================ */
+[class*="speaking_"] {
+    box-shadow: 0 0 0 2px oklch(65% 0.12 165) !important;
+}
+
+/* ================================================================
+   TYPING INDICATOR — testo viola
+   ================================================================ */
+[class*="typing_"] {
+    color: oklch(45% 0.02 290) !important;
+}
+
+[class*="typing_"] strong {
+    color: oklch(68% 0.10 295) !important;
+}
+
+/* ================================================================
+   LINK — glow sottile al hover
+   ================================================================ */
+a:hover {
+    text-shadow: 0 0 4px oklch(68% 0.10 295 / 0.15) !important;
+}
+
+/* ================================================================
+   PROGRESS BAR (Boost, Upload) — gradiente viola
+   ================================================================ */
+[class*="barForeground_"],
+[class*="bar_"][class*="brand_"] {
+    background: linear-gradient(90deg, oklch(45% 0.10 305), oklch(55% 0.12 300), oklch(63% 0.11 295)) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   SPOTIFY — barra custom neon
+   ================================================================ */
+[class*="spotify"] [class*="barFill_"],
+[class*="spotify"] [class*="bar_"] [class*="barInner_"] {
+    background: linear-gradient(90deg, oklch(55% 0.10 165), oklch(62% 0.09 165)) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   ATTACHMENT FILE — bordo sottile
+   ================================================================ */
+[class*="attachment_"] {
+    border: 1px solid oklch(40% 0.015 290 / 0.12) !important;
+}
+
+[class*="attachment_"]:hover {
+    border-color: oklch(50% 0.04 300 / 0.20) !important;
+}
+
+/* ================================================================
+   IMMAGINI — leggero bagliore al hover
+   ================================================================ */
+[class*="imageWrapper_"]:hover {
+    filter: brightness(1.03) !important;
+    transition: filter 0.3s ease !important;
+}
+
+/* ================================================================
+   FORUM CARDS — bordo glow al hover
+   ================================================================ */
+[class*="card_"][class*="clickable_"]:hover {
+    box-shadow: 0 0 0 1px oklch(50% 0.04 300 / 0.15),
+                0 4px 12px oklch(5% 0.01 290 / 0.3) !important;
+}
+
+/* ================================================================
+   WINDOW CONTROLS CUSTOM — punti neon
+   ================================================================ */
+[class*="winButtonClose_"]:hover {
+    background: oklch(58% 0.14 15) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   PLACEHOLDER INPUT — colore consistente
+   ================================================================ */
+::placeholder {
+    color: oklch(36% 0.015 290) !important;
+    opacity: 1 !important;
+}
+
+/* ================================================================
+   FOCUS ACCESSIBILITÀ — outline viola
+   ================================================================ */
+:focus-visible {
+    outline: 1px solid oklch(55% 0.08 300 / 0.35) !important;
+    outline-offset: 2px !important;
+}
+
+/* ================================================================
+   ANIMAZIONE POPOUT — ingresso leggero
+   ================================================================ */
+@keyframes mv-pop-in {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+[class*="layerContainer_"] [class*="layer_"]:not([class*="hidden_"]) {
+    animation: mv-pop-in 0.18s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ================================================================
+   PANNELLO UTENTE — icone con transizione
+   ================================================================ */
+[class*="panels_"] button {
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+[class*="panels_"] button:hover {
+    text-shadow: none !important;
+}
+
+/* ================================================================
+   CANALE SELEZIONATO — bagliore accent
+   ================================================================ */
+[class*="modeSelected_"],
+[class*="channel_"][class*="selected_"] {
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   RUOLO PILLS — bordo viola al hover
+   ================================================================ */
+[class*="role_"]:hover {
+    border-color: oklch(45% 0.04 300 / 0.20) !important;
+}
+
+/* ================================================================
+   EMOJI PICKER — ombra viola
+   ================================================================ */
+[class*="emojiPicker_"] {
+    box-shadow: 0 8px 24px oklch(5% 0.01 290 / 0.5) !important;
+}
+
+/* ================================================================
+   AUTOCOMPLETE (/, menzioni) — ombra viola
+   ================================================================ */
+[class*="autocomplete_"] {
+    box-shadow: 0 8px 20px oklch(5% 0.01 290 / 0.45) !important;
+}
+
+/* ================================================================
+   CONNESSIONI PROFILO — bordo al hover
+   ================================================================ */
+[class*="connectedAccount_"]:hover {
+    border-color: oklch(45% 0.04 300 / 0.18) !important;
+    transition: border-color 0.2s ease !important;
+}
+
+/* ================================================================
+   TIMESTAMP HOVER — più visibile
+   ================================================================ */
+[class*="timestamp_"]:hover {
+    color: oklch(52% 0.02 290) !important;
+    transition: color 0.15s ease !important;
+}
+
+/* ================================================================
+   LOADING SPINNER — colore viola
+   ================================================================ */
+[class*="wanderingCubes_"] [class*="cube_"],
+[class*="spinner_"] [class*="inner_"],
+[class*="pulsingEllipsis_"] [class*="item_"] {
+    background-color: oklch(55% 0.10 300) !important;
+}
+
+/* ================================================================
+   SEARCH RESULTS — highlight viola
+   ================================================================ */
+[class*="searchResult_"][class*="hit_"] {
+    box-shadow: inset 3px 0 0 oklch(55% 0.10 300) !important;
+}
+
+/* ================================================================
+   NEW BADGE (nuove funzionalità) — stile neon
+   ================================================================ */
+[class*="newBadge_"],
+[class*="textBadge_"][class*="base_"] {
+    background: linear-gradient(135deg, oklch(48% 0.12 305), oklch(55% 0.12 300)) !important;
+    box-shadow: none !important;
+}
+
+/* ================================================================
+   CHECKBOX CHECKED — accent viola
+   ================================================================ */
+[class*="checkbox_"][class*="checked_"],
+[class*="container_"][class*="checked_"] {
+    background: oklch(50% 0.12 305) !important;
+    border-color: oklch(50% 0.12 305) !important;
+}
+
+/* ================================================================
+   SWITCH/TOGGLE ON — gradiente viola
+   ================================================================ */
+[class*="container_"][class*="checked_"] [class*="bar_"],
+[class*="checked_"] [class*="slider_"] {
+    background: oklch(50% 0.12 305) !important;
+}
+
+/* ================================================================
+   BANNER BOOST / PROMO — gradiente viola profondo
+   ================================================================ */
+[class*="upsellContainer_"],
+[class*="tierHeaderLocked_"] {
+    background: linear-gradient(135deg, oklch(14% 0.03 290), oklch(22% 0.08 305), oklch(16% 0.04 320)) !important;
+}
+
+/* ================================================================
+   CUSTOM CURSOR (opzionale — underline lampeggiante)
+   ================================================================ */
+[class*="channelTextArea_"] [class*="editor_"] [data-slate-placeholder="true"] {
+    animation: mv-blink 1.2s step-end infinite !important;
+}
+
+@keyframes mv-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ================================================================
+   MESSAGE HOVER — bordo sinistro viola + sfondo visibile
+   ================================================================ */
+[class*="message_"]:hover {
+    border-left: 2px solid oklch(60% 0.12 300 / 0.45) !important;
+    transition: background 0.15s ease, border-left 0.15s ease !important;
+}
+
+/* ================================================================
+   FINE TEMA — MidnightViolet v3.0.0
+   Per System24 by refact0r, heavily customized by Lorenzo
+   ================================================================ */
