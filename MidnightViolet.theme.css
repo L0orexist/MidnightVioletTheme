@@ -613,6 +613,13 @@ a:hover {
 }
 
 /* ================================================================
-   FINE TEMA — MidnightViolet v3.0.0
+   FIX LABEL "channel" — sempre visibile (bug System24)
+   ================================================================ */
+.subtitleContainer_f75fb0::after {
+    display: none !important;
+}
+
+/* ================================================================
+   FINE TEMA — MidnightViolet v3.1.0
    Per System24 by refact0r, heavily customized by Lorenzo
    ================================================================ */
