@@ -80,7 +80,7 @@ body {
     --ascii-loader: system24;
 
     /* ---- Label Pannelli ---- */
-    --panel-labels: on;
+    --panel-labels: off;
     --label-color: var(--text-4);
     --label-font-weight: 600;
 }
